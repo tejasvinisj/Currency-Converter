@@ -1,0 +1,24 @@
+package project;  //defining a package called project
+
+public class Rupee  //superclass Rupee,same as superclass in package myproject
+{
+		String IndianRupee;     //instance variable
+		public Rupee()          //Default constructor
+		{
+			IndianRupee="INR";    
+		}
+		protected Rupee(String IndianRupee)  //scope and lifetime of variables
+		{
+			this.IndianRupee=IndianRupee;     //using of this keyword
+		}
+		public void displayRupee()           //member function
+		{
+			System.out.println("The Indian rupee (code:"+IndianRupee+") is the official Currency of India\n");
+			
+		}  
+		 public void show()      //member function to show method override
+		{
+			System.out.println("Finally done!!!");
+		}
+
+	}

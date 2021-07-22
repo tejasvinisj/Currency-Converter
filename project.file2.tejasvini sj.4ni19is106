@@ -1,0 +1,221 @@
+package myproject;   //package called myproject
+import java.util.*;    //importing java.util
+import project.*;  //importing the super class Rupee from package project.
+
+
+/*class Rupee        //super class
+{
+	String IndianRupee;     //instance variable
+		 Rupee()            //Default constructor
+		{
+			IndianRupee="INR";
+		}
+		 Rupee(String IndianRupee)     //parameterized constructor
+		{
+			this.IndianRupee=IndianRupee;
+		}
+		 void displayRupee()        //member function
+		{
+			System.out.println("The Indian rupee (code:"+IndianRupee+") is the official Currency of India\n");
+			
+		} 
+		 public void show()        //methodoverride
+		{
+			System.out.println("Finally done!!!");
+		}
+ 
+
+}*/
+class Pounds extends Rupee   //subclass pounds of superclass Rupee
+{
+	  String pounds;      //instance variables
+      float amount,pound;
+     void pounds()        //default constructor
+      {
+    	  amount=0;
+    	  pound=0;
+      }
+   
+   Pounds()
+   {
+	   super();         //calls default constructor of super class,usage of super.
+   }
+   Pounds(float amount)      //parameterized constructor
+   {
+	   this.amount=amount;     //using of this keyword
+   }
+	void displayPounds()       //member function
+	{
+
+		Scanner sc=new Scanner(System.in);
+		
+		pound=this.amount/88;       //converting Rupee to pound
+		System.out.println("The converted amount in pound sterling is " +pound);
+		sc.close();
+	}
+	public void show()            //overrides show in superclass Rupee
+	{
+		System.out.println("User successfully converted.\n");
+	}
+}
+
+
+class dollars extends Rupee   //subclass dollars of superclass rupee
+{
+	String dollars;       //instance variables
+	float amount,dollar;
+	dollars()        //default constructor
+	{
+		amount=0;  
+		dollar=0;
+	}
+	dollars(String IndianRupee,String dollars)   //parameterized constructor
+	{
+		super(IndianRupee);   //calls the parameterized constructor of superclass,
+		this.dollars=dollars;   // using of this keyword
+	}
+	dollars(float amount)
+	{
+		this.amount=amount;
+	}
+	dollars(dollars a)
+	{
+		this.amount=a.amount;
+	}
+	void displaydollars()    //member function
+	{
+		Scanner sc=new Scanner(System.in);
+		dollar=this.amount/70;
+		System.out.println("The converted amount in dollar is " +dollar);
+		sc.close();
+	}
+	void display()     
+	{
+		System.out.println("\nUSD is the currency abbreviation for the United States dollar");
+	}
+	void display(String $)     //method overloading by passing parameters
+	{
+		System.out.println("Symbol of dollar is "+$ );
+		System.out.println();
+	}
+	
+}
+   
+interface show    //defining interface called show
+{             //method declaration without body
+	void display();     //interface defines wt to do not how to to do
+}
+class welcome implements show      //welcome class implements interface show & any no of class can implement an interface
+{
+	public void display() //method which implements interface must be declared as public
+	{
+		
+		System.out.println("\t\t\t\t\t\tWELCOME TO CURRENCY CONVERTER\n");
+		System.out.println("\t\t\t\tA simple means to convert from Indian currency to other currencies.\n");
+	}
+	
+}
+
+class mynewthread implements Runnable           //implementing  runnable class called mynewthread 
+{
+	Thread t;      //instance variable t
+	String threadname;
+	mynewthread(String m)    //mynewthread constructor
+	{
+		threadname=m;
+		t=new Thread(this,threadname);   //creating thread object-
+		t.start();   //start the thread t
+	}
+	public void run()   //entry point for child thread -execution of run method
+	{
+		
+		//exception handling using try and catch block.
+		try
+		{
+			
+			{
+			System.out.println("\t\t\tSome interesting facts on Rupee.\n");
+			System.out.println("* There are totally seventeen languages on a single note.");
+			System.out.println("* The credit of designing Rupee symbol goes to Udaya Kumar.");
+			System.out.println("* Old Currency notes are recycled.");
+			System.out.println("* The one Rupee note was the first banknote printed by independent India.\n");
+			t.sleep(100);
+			System.out.println("Thank You");
+			System.out.println("Submitted by\n Tejasvini S J\n 4NI19IS106\n A Section");
+			}
+			
+		}
+		catch(InterruptedException e) 
+		{
+			System.out.println("Thread interrupted.");
+		}
+	}
+}
+
+public class Currencyconverter
+{
+
+	public static void main(String[] args)
+	{
+		 Pounds subob = new Pounds();   //creating object of subclass pounds
+		 dollars ob = new dollars();    //creating object of subclass dollars
+		show obj = new welcome();       //creating object of welcome class implemented by show interface
+		String option;
+        float amount;
+        float pound,dollar;
+		Rupee R = new Rupee();   //object of super class
+		Scanner sc=new Scanner(System.in);
+		
+		
+		obj.display();       //calling display of welcome class of show interface using obj
+		R.displayRupee();
+		System.out.println("Do you want to convert from Rupee to pound sterling then enter pound");
+		System.out.println("Do you want to convert from Rupee to dollar then enter dollar");
+		option = sc.nextLine();
+		//sc.nextLine();
+	    if(option.equalsIgnoreCase("Pound"))      //string handling 
+	    	
+	    {
+	    	System.out.println("Enter the values in Currency converter");
+			System.out.println();
+			System.out.println("Enter the amount in rupees: ");
+		    amount=sc.nextFloat();
+		    sc.nextLine();
+		    Pounds p = new Pounds(amount);
+		    p.displayPounds();
+		    subob.show();  //calls show in subclass pounds
+		    
+	    }
+		
+	    else if(option.equalsIgnoreCase("dollar"))
+		{
+	    	System.out.println("Enter the values in Currency converter");
+			System.out.println();
+			System.out.println("Enter the amount in rupees: ");
+			amount=sc.nextFloat();
+			sc.nextLine();
+			dollars d= new dollars(amount);  //creating objec d
+			dollars c=new dollars(d);  //passing object as parameters
+			c.displaydollars();
+			ob.display();    //calling overloaded method using object ob
+			ob.display("$");   //calling overloaded method of parameter using object ob
+		}
+	    else 
+	    {       
+	    	       
+	        try
+	        {
+	        	throw new Exception("Invalid input!!");         //throwing an exception using try block
+	        }
+	        catch(Exception e)                //catching an exception (generic exception)
+	        {
+	        	System.out.println(e);
+	        }
+	    		    	
+	    }
+	    
+	   new mynewthread("more");   //calling mynewthread constructor
+		sc.close();
+	}
+
+}
